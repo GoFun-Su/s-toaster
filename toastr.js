@@ -53,10 +53,7 @@
 	//调用$("p").confirm()
 	//用代理实现单例模式
 	 function Plugin(message,ok,cancel) {
-                	var instance;
-                	if (instance === undefined) {
-                		instance = new confirm(message,ok,cancel);
-                	} 
+                	instance = new confirm(message,ok,cancel);
                 	return  instance.init(this)
 	}
 	$.fn.confirm = Plugin; 
@@ -64,11 +61,7 @@
 	//调用$.confirm()
 	$.extend({ 
 		confirm: function (message,ok,cancel,i) { 
-			var instance;
-	                	if (instance === undefined) {
-	                		instance = new confirm(message,ok,cancel);
-	                	} 
-	                	
+	                	instance = new confirm(message,ok,cancel);
 			return instance.init(i); 
 		} 
 	});

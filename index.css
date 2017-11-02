@@ -1,0 +1,99 @@
+    
+ *{
+    font-family: "微软雅黑","Arial";
+     font-weight: normal;
+   }
+   .toast{
+   	display: none;
+   }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #666666;
+    opacity: 0.5;
+    z-index: 12;
+}
+.popBox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: #ffffff;
+    z-index: 15;
+    width: 570px;
+    height: 300px;
+    margin-left: -285px;
+    margin-top: -150px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #535e66;
+}
+.titBox{
+    height: 30px;
+    line-height: 30px;
+    padding: 14px 30px;
+    border-bottom: 1px solid #e9e9ed;
+    color: rgb(0, 0, 0);
+     position: relative;
+}
+.close{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+.tbody{
+        padding: 20px 30px;
+            height: 120px;
+}
+.content{
+        position: relative;
+      padding-left: 60px;
+     position: relative;
+     height: 48px;
+}
+.content:after{
+	content: "";
+	width: 48px;
+    	height: 48px;
+	position: absolute;
+	background-image: url(img/icons.png);
+    	background-repeat: no-repeat;
+    	background-position: 0px -48px;
+    	left: 0;
+   	 top: 0;
+}
+.content.warning:after{
+    	background-position: 0px -96px;
+}
+.content.success:after{
+    	background-position: 0px -48px;
+}
+.content.error:after{
+    	background-position: -48px -48px;
+}
+.tfoot{
+   height: 80px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    background: #f3f3f3;
+     text-align: center;
+}
+.tfoot button{
+   height: 30px;
+    line-height: 30px;
+    background: #ea5947;
+    padding: 0 16px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px #ea5947 solid;
+    margin-right: 30px;
+}
+.tfoot .cancel{
+	border: 1px #e3e3e9 solid;
+    	color: #000;
+            background: #fff;
+}

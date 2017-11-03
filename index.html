@@ -16,18 +16,37 @@
     			color: #fff;
     			cursor: pointer;
 		}
+		.thre{
+			background: #999;
+    			color: #fff;
+    			cursor: pointer;
+		}
+		.four{
+			background: #666;
+    			color: #fff;
+    			cursor: pointer;
+		}
+		.five{
+			background: #ea5947;
+    			color: #fff;
+    			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
-	<div class="one">弹窗 一</div>
-	<div class="two">弹窗二</div>
-</body>
+	<div class="one">警告</div>
+	<div class="two">成功</div>
+	<div class="thre">提示</div>
+	<div class="four">input</div>
+	<div class="five">信息</div>
+	</body>
 <script  src="jquery.min.js" type="text/javascript"></script>
 <script  src="index.js" type="text/javascript"></script>
 <!-- http://www.jq22.com/jquery-info2351 -->
 <script type="text/javascript">
 	$(".one").click(function(){
 		$.toast({
+			title:"警告",
 			type:"warning",
 			text:"弹窗一是警告，内容是弹窗一 ",
 			onOk:function(v){
@@ -37,6 +56,7 @@
 	})
 	$(".two").click(function(){
 		$.toast({
+			title:"成功",
 			type:"success",
 			text:" 弹窗二是消息成功弹窗，内容是弹窗二",
 			onOk:function(v){
@@ -45,6 +65,35 @@
 		})
 	})
 	
-	
+	$(".thre").click(function(){
+		$.toast({
+			title:"提示",
+			type:"confirm",
+			text:" 弹窗三是消息提示弹窗，内容是弹窗三",
+			onOk:function(v){
+				
+			}	
+		})
+	})
+	$(".four").click(function(){
+		$.toast({
+			title:"提示",
+			type:"input",
+			text:" 弹窗四是input提示弹窗，内容是弹窗四",
+			onOk:function(){
+				alert($(".content-input  input ").val())
+			}	
+		})
+	})
+	$(".five").click(function(){
+		$.toast({
+			title:"提示",
+			type:"info",
+			text:" 弹窗四是信息提示，内容是弹窗五",
+			onOk:function(){
+				
+			}	
+		})
+	})
 </script>
 </html>

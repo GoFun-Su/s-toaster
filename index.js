@@ -21,53 +21,51 @@
         factory(jQuery);
     }
 }(function ($) {
-	var toastType = {
-		success: {
-			title: "成功"
-		},
-		error: {
-			title: "错误"
-		},
-		warning: {
-			title: "警告"
-		}
-	};
-	
-	
-
 	var Toast = function(options){
 		var opts = options,//配置
-		     $document = $(document);
-		this.filling = function() {
-			 var that = this;
-            		       this.element= $("<div class='toast'>");//弹窗最外层盒子
+		     $document = $(document),
+		     that = this;//保存this，否则所有的函数指向window
+		that.filling = function() {
+            		       that.element= $("<div class='toast'>");//弹窗最外层盒子
 			var $overlay = $("<div class='overlay'>");//遮罩层
 			var $popBox = $("<div class='popBox'>")//弹窗盒子
 			var $title = $("<div class='titBox'><span class='title'>"+opts.title+"</span><a class='close'><i class='iconfont icon-lei_guanbi'></i></a></div>")
-			var $tbody = $("<div class='tbody'><p class='content "+opts.type+"'>"+opts.text+"</p></div>");
+			var $tbody = $("<div class='tbody'></div>");
 			var $tfooter = $("<div class='tfoot'><button class='sure'>确定</button><button class='cancel'>取消</button></div>");
-			
-			this.element.append($overlay);
-			this.element.append($popBox);
+			var $info = $("<p class='content "+opts.type+"'>"+opts.text+"</p>");
+			var $input = $("<p class='content-input '>请输入<input/></p>");
+
+			that.element.append($overlay);
+			that.element.append($popBox);
 			$popBox .append($title);
 			$popBox.append($tbody);
 			$popBox.append($tfooter);
-			$("body").append(this.element);
-			this.element.show();
+			$("body").append(that.element);
+			opts.type == "input"? $tbody.append($input):$tbody.append($info);
+			if(opts.type == "info")  { that.element.find(".cancel").remove() }
+			that.element.show();
 		};
-		this.eventBind = function() {
-			var that = this;
-			this.element.find(".sure").click(function(){
-				that.element.hide();
+		that.eventBind = function() {
+			that.element.find(".sure").click(function(){
+				that.hide();
 				opts.onOk($(this));
 			});
+			that.element.find(".cancel").click(function(){
+				that.hide();
+			});
+			that.element.find(".close").click(function(){
+				that.hide();
+			});
+		};
+		//初始化
+		that.init = function(options){
+			opts = options;
+			that.eventBind();
+		};
+		that.hide = function(){
+			that.element.hide();
 		}
 
-		//初始化
-		this.init = function(options){
-			opts = options;
-			this.eventBind();
-		};
 	};
 
 	//配置参数
@@ -81,8 +79,7 @@
 	
 	$.extend({ 
 		toast: function (parameter) { 
-			type = toastType[parameter.type] ;
-			var options = $.extend({},defaults,parameter,type);
+			var options = $.extend({},defaults,parameter);
 			if(!toast){
 				var toast = new Toast(options);
 				toast.filling();

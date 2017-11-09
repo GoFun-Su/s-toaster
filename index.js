@@ -26,28 +26,34 @@
 		     $document = $(document),
 		     that = this;//保存this，否则所有的函数指向window
 		that.filling = function() {
-            		       that.element= $("<div class='toast'>");//弹窗最外层盒子
-			var $overlay = $("<div class='overlay'>");//遮罩层
-			var $popBox = $("<div class='popBox'>")//弹窗盒子
-			var $title = $("<div class='titBox'><span class='title'>"+opts.title+"</span><a class='close'><i class='iconfont icon-lei_guanbi'></i></a></div>")
-			var $tbody = $("<div class='tbody'></div>");
-			var $tfooter = $("<div class='tfoot'><button class='sure'>确定</button><button class='cancel'>取消</button></div>");
+			       $(".toast").remove();//先把所有的弹窗清除
+            	   that.element= $("<div class='toast'>");//弹窗最外层盒子
+            	   var _html = "<div class='overlay'></div>"+
+            	   "<div class='popBox'>"+
+            	   		"<div class='titBox'>"+
+            	   			"<span class='title'>"+opts.title+"</span>"+
+            	   			"<a class='close'><i class='iconfont icon-lei_guanbi'></i></a>"+
+            	   		"</div>"+
+            	   		"<div class='tbody'></div>"+
+            	   		"<div class='tfoot'>"+
+            	   			"<button class='sure'>确定</button><button class='cancel'>取消</button>"+
+            	   		"</div>"+
+            	   "</div>";
 			var $info = $("<p class='content "+opts.type+"'>"+opts.text+"</p>");
 			var $input = $("<p class='content-input '>请输入<input/></p>");
+			var $textarea = $("<p class='content-input '>请输入<textarea></textarea></p>");
 
-			that.element.append($overlay);
-			that.element.append($popBox);
-			$popBox .append($title);
-			$popBox.append($tbody);
-			$popBox.append($tfooter);
+			that.element.html(_html);
+			
 			$("body").append(that.element);
-			opts.type == "input"? $tbody.append($input):$tbody.append($info);
-			if(opts.type == "info")  { that.element.find(".cancel").remove() }
+			if(opts.type == "input")  { that.element.find(".tbody").append($input);}
+			if(opts.type == "textarea")  { that.element.find(".tbody").append($textarea); }
+			if(opts.type == "info")  { that.element.find(".tbody").append($info); that.element.find(".cancel").remove() }
 			that.element.show();
 		};
 		that.eventBind = function() {
 			that.element.find(".sure").click(function(){
-				that.hide();
+				//that.hide();
 				opts.onOk($(this));
 			});
 			that.element.find(".cancel").click(function(){
@@ -58,14 +64,15 @@
 			});
 		};
 		//初始化
-		that.init = function(options){
-			opts = options;
+		that.init = function(){
+			this.filling();
 			that.eventBind();
 		};
 		that.hide = function(){
 			that.element.hide();
 		}
 
+		that.init();
 	};
 
 	//配置参数
@@ -76,15 +83,10 @@
 		onCancel: function(){}
 	};
 
-	
 	$.extend({ 
 		toast: function (parameter) { 
 			var options = $.extend({},defaults,parameter);
-			if(!toast){
-				var toast = new Toast(options);
-				toast.filling();
-			}
-			toast.init(options);
+		                   instance = new Toast(options);
 		}
 	});
 

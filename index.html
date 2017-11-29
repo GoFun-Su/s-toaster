@@ -51,6 +51,7 @@
 			text:"弹窗一是警告，内容是弹窗一 ",
 			onOk:function(v){
 				alert("这是弹窗一")
+				v.hide();
 			}	
 		})
 	})
@@ -61,6 +62,7 @@
 			text:" 弹窗二是消息成功弹窗，内容是弹窗二",
 			onOk:function(v){
 				alert("这是弹窗二")
+				v.hide();
 			}	
 		})
 	})
@@ -71,7 +73,8 @@
 			type:"confirm",
 			text:" 弹窗三是消息提示弹窗，内容是弹窗三",
 			onOk:function(v){
-				
+				console.log(v.find(".content ").html())
+				v.hide();
 			}	
 		})
 	})
@@ -80,8 +83,9 @@
 			title:"提示",
 			type:"input",
 			text:" 弹窗四是input提示弹窗，内容是弹窗四",
-			onOk:function(){
+			onOk:function(v){
 				alert($(".content-input  input ").val())
+				v.hide();
 			}	
 		})
 	})
@@ -90,7 +94,8 @@
 			title:"提示",
 			type:"info",
 			text:" 弹窗四是信息提示，内容是弹窗五",
-			onOk:function(){
+			onOk:function(v){
+				v.hide();
 				
 			}	
 		})

@@ -46,15 +46,16 @@
 			that.element.html(_html);
 			
 			$("body").append(that.element);
-			if(opts.type == "input")  { that.element.find(".tbody").append($input);}
+			 that.element.find(".tbody").append($info); 
+			if(opts.type == "input")  { that.element.find(".tbody").append($input); that.element.find(".tbody").css({"height":"150px"});}
 			if(opts.type == "textarea")  { that.element.find(".tbody").append($textarea); }
-			if(opts.type == "info")  { that.element.find(".tbody").append($info); that.element.find(".cancel").remove() }
+			if(opts.type == "info")  {that.element.find(".cancel").remove() ;}
 			that.element.show();
 		};
 		that.eventBind = function() {
 			that.element.find(".sure").click(function(){
 				//that.hide();
-				opts.onOk($(this));
+				opts.onOk(that.element);
 			});
 			that.element.find(".cancel").click(function(){
 				that.hide();

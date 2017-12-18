@@ -56,28 +56,35 @@
 .content:after{
 	content: "";
 	width: 48px;
-    	height: 48px;
+   height: 48px;
 	position: absolute;
 	background-image: url(img/icons.png);
     	background-repeat: no-repeat;
-    	background-position: 0px -48px;
+    	background-position: center center;
     	left: 0;
    	top: 0;
+
 }
 .content.warning:after{
-    	background-position: 0px -96px;
+    	background-image: url(img/warning.png);
+         background-size: 100%;
 }
 .content.success:after{
-    	background-position: 0px -48px;
+    	background-image: url(img/success.png);
+         background-size: 100%;
 }
 .content.error:after{
-    	background-position: -48px -48px;
+    	background-image: url(img/fail.png);
+         background-size: 100%;
 }
 .content.info:after{
     	background-position: 0 0;
 }
 .content.confirm:after{
     	background-position: -48px 0;
+}
+.content.input:after{
+        background-position: -48px 0;
 }
 .content-input {
 	width: 400px;

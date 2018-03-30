@@ -124,3 +124,12 @@
     	color: #000;
             background: #fff;
 }
+@media only screen and (max-width:980px) {
+    .popBox{
+        width: 350px;
+        margin-left: -175px;
+    }
+    .content-input, .content-input input {
+        width: 100%;
+    }
+}
